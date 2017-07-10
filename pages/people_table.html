@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People Table</title>
+  <!--<link rel="shortcut icon" href="img/icon.png" type="image/png">-->
+  <link href="../styles/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<section class="user-options">
+  <div class="registry">
+    <form>
+      <input type="text" name="name" placeholder="John Doe" />
+      <label>
+        <input type="radio" name="sex" value="male" checked>Male
+      </label>
+      <label>
+        <input type="radio" name="sex" value="Female">Female
+      </label>
+      <label>
+        <input type="radio" name="sex" value="Other">Other
+      </label>
+      <input type="date" name="birth-date" placeholder="dd.mm.yy" />
+      <input type="text" name="address" placeholder="Lviv, Naukova-Str., 28" />
+      <input type="tel" name="phone" placeholder="+380935673950" />
+      <input type="email" name="email" placeholder="user@gmail.com" />
+      <input type="submit" value="Save" />
+    </form>
+  </div>
+  <div class="user-list">
+    <div class="user-card">John Doe</div>
+    <div class="user-card">John Doe</div>
+    <div class="user-card">John Doe</div>
+    <div class="user-card">John Doe</div>
+    <div class="user-card">John Doe</div>
+    <div class="user-card">John Doe</div>
+  </div>
+
+</section>
+<div class="user-table">
+  <table>
+    <thead>
+    <tr >
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Birth date</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr></tr>
+    </tbody>
+  </table>
+
+</div>
+<script src="../scripts/people_table.js"></script>
+</body>
+</html>

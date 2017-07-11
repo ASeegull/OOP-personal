@@ -1,7 +1,12 @@
 var users = [];
 var user;
 var fields = ['name', 'birth-date', 'address', 'phone', 'email'];
+function SuperUser() {
+  this.isDataVisible = true;
+}
+
 function User() {
+  SuperUser.call(this);
   this.getFormValues = function () {
     var values = [];
     var i = 0;
@@ -58,7 +63,7 @@ function clearInput () {
   for (i; i <= (fields.length - 1); i++) {
     document.querySelector(`[name="${fields[i]}"]`).value = "";
   }
-  document.querySelector('[value="male"]').checked = true;
+  document.querySelector('[value="Male"]').checked = true;
 }
 
 var $submit = document.querySelector('input[type="submit"]');

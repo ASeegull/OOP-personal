@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Verdana', sans-serif;
+  font-size: 18px;
+  color: #222;
+}
+
+.user-options {
+  background-color: gainsboro;
+  width: 85%;
+  margin: 70px auto;
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.8rem;
+}
+
+.registry {
+display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+form {
+  width: 500px;
+}
+
+input {
+  text-align: center;
+}
+
+form > input {
+  width: 100%;
+  display: block;
+  height: 25px;
+  margin: 15px 0;
+}
+
+label {
+  margin: 15px;
+}
+
+input:not([type="radio"]) {
+width: 90%;
+}
+
+input[type="submit"] {
+  background-color: #5b6f94;
+  color: #fff;
+  border: 1px solid white;
+  outline: none;
+}
+
+.user-list div[data-id] {
+  background-color: #5b6f94;
+  color: #fff;
+  width: 300px;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #fff;
+}
+
+table {
+  width: 100%;
+  margin: 25px auto;
+  border-collapse: collapse;
+}
+
+.user-table thead {
+  background-color: #f7faf3;
+  border-bottom: 1px solid #5b6f94;
+}
+
+th {
+  padding: 10px 35px;
+}
+
+td {
+  border: 1px solid #5b6f94;
+  padding: 10px;
+}
+
+tr:nth-child(odd) {
+  background-color: #e6e9ec;
+}
+
+tr:nth-child(even) {
+  background-color: #fff;
+}

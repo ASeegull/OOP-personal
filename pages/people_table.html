@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>People Table</title>
   <!--<link rel="shortcut icon" href="img/icon.png" type="image/png">-->
-  <link href="../styles/style.css" rel="stylesheet" type="text/css"/>
+  <link href="../styles/people_table.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<section class="user-options">
+<main class="user-options">
+  <header>
+    <h1>People Table</h1>
+    <hr/>
+  </header>
+
   <div class="registry">
     <form>
-      <input type="text" name="name" placeholder="John Doe" />
+      <input type="text" name="name" placeholder="John" />
       <label>
         <input type="radio" name="sex" value="Male" checked>Male
       </label>
@@ -25,29 +30,29 @@
       <input type="text" name="address" placeholder="Lviv, Naukova-Str., 28" />
       <input type="tel" name="phone" placeholder="+380935673950" />
       <input type="email" name="email" placeholder="user@gmail.com" />
-      <input type="submit" value="Save" />
+      <input type="submit" value="Save" disabled/>
     </form>
-  </div>
 <div class="user-list"></div>
+  </div>
+  <div class="user-table">
+    <table>
+      <thead>
+      <tr >
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Birth date</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
 
-</section>
-<div class="user-table">
-  <table>
-    <thead>
-    <tr >
-      <th>Name</th>
-      <th>Sex</th>
-      <th>Birth date</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+  </div>
+</main>
 
-</div>
 <script src="../scripts/jquery-3.2.1.min.js"></script>
 <script src="../scripts/people_table.js"></script>
 </body>

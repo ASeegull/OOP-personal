@@ -1,8 +1,9 @@
+var d = document;
 var users = [];
 var user;
 var fields = ['name', 'birth-date', 'address', 'phone', 'email'];
 var inputElements = fields.map(function(field) {
-  return document.querySelector(`[name="${field}"]`);
+  return d.querySelector(`[name="${field}"]`);
 });
 
 function SuperUser() {
@@ -14,19 +15,16 @@ function hideUserData (e) {
   user.isDataVisible = false;
 }
 
-document.querySelector('tbody').addEventListener('click', hideUserData, false);
-
-
+d.querySelector('tbody').addEventListener('click', hideUserData, false);
 
 function User() {
   SuperUser.call(this);
   this.getFormValues = function () {
     var values = [];
-    var i = 0;
     inputElements.forEach(function(el) {
       values.push(el.value);
     });
-    var sex = document.querySelector('[name="sex"]:checked').value;
+    var sex = d.querySelector('[name="sex"]:checked').value;
     values.push(sex);
     this.setUserData(values);
     users.push(this);
@@ -34,7 +32,7 @@ function User() {
 
   this.setUserData = function (values) {
     this.name = values[0];
-    this.birth_date = values[1];
+    this.birth_date = values[1].split('-').reverse().join('.');
     this.address = values[2];
     this.phone = values[3];
     this.email = values[4];
@@ -51,6 +49,7 @@ function saveUser(e) {
   user.addTableRow();
   user.addCard();
   clearInput();
+  $submit.disabled = true;
 }
 
 User.prototype.setId = function () {
@@ -58,31 +57,31 @@ User.prototype.setId = function () {
 };
 
 User.prototype.addTableRow = function () {
-  var $tbody = document.querySelector('tbody');
-  var createRow = document.createElement('tr');
+  var $tbody = d.querySelector('tbody');
+  var createRow = d.createElement('tr');
   createRow.setAttribute('data-id', this.id);
   $tbody.appendChild(createRow);
   var userData = [this.name, this.sex, this.birth_date, this.address, this.phone, this.email];
-  var $tr = document.querySelector('[data-id=\"' + this.id + '\"]');
+  var $tr = d.querySelector('[data-id=\"' + this.id + '\"]');
   userData.forEach(function (item) {
-    var $tcell = document.createElement('td');
+    var $tcell = d.createElement('td');
     $tcell.innerText = item;
     $tr.appendChild($tcell);
   });
 };
 
 User.prototype.addCard = function () {
-  var $userList = document.querySelector('div.user-list');
-  var $user = document.createElement('div');
+  var $userList = d.querySelector('div.user-list');
+  var $user = d.createElement('div');
   $user.setAttribute('data-id', this.id);
   $user.innerText = user.name;
   $userList.appendChild($user);
-  document.querySelector('div[data-id=\"' + this.id + '\"]').addEventListener('click', showTableRow, false);
+  d.querySelector('div[data-id=\"' + this.id + '\"]').addEventListener('click', showTableRow, false);
   };
 
 function showTableRow (e) {
   var selectedUser = e.target.getAttribute('data-id');
-  var $tr = document.querySelector('tr[data-id=\"' + selectedUser + '\"]');
+  var $tr = d.querySelector('tr[data-id=\"' + selectedUser + '\"]');
   console.log($tr);
   $tr.style.display = 'table-row';
 }
@@ -92,14 +91,52 @@ function clearInput () {
   inputElements.forEach(function(el) {
     el.value = "";
   });
-  document.querySelector('[value="Male"]').checked = true;
+  d.querySelector('[value="Male"]').checked = true;
 }
 
-var $submit = document.querySelector('input[type="submit"]');
+var $submit = d.querySelector('input[type="submit"]');
 $submit.addEventListener('click', saveUser, false);
 
+d.querySelector('form').addEventListener('change', submitEnable, false);
 
-function submitEnable () {
+function submitEnable() {
+  var validInput = 0;
+  if (inputElements[0].value) {
+    ( inputElements[0].value.match(/[a-zA-Z]+/)) ? (validInput++) : (alert('Name shouldn\'t contain any numbers or space'));
+  }
 
+  validInput = checkDate(inputElements[1], validInput);
+
+  if (inputElements[3].value) {
+    inputElements[3].value.match(/\+380\d{9}/) ? (validInput++) : (alert('Please, enter phone number using example'));
+  }
+
+  if (inputElements[4].value) {
+    inputElements[4].value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) ? (validInput++) : (alert('Please, enter email address using example'));
+  }
+  
+  if (validInput === 4) {
+    $submit.disabled = false;
+  }
+}
+
+function checkDate(elem, validInput) {
+  if (elem.value) {
+    var date = elem.value.split('-');
+    switch(date) {
+      case (+date[0] < 1930):
+        alert('Are you really that old?)');
+        break;
+      case (+date[1] > 12):
+        alert('Check if you entered month correctly');
+        break;
+      case (+date[2] >= 31):
+        alert('Check if you entered day of your birth correctly');
+        break;
+      default:
+        return validInput +=1;
+    }
+  }
+  return validInput;
 }
 

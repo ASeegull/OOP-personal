@@ -33,7 +33,7 @@ div.list-container {
   float: left;
   clear: both;
   font-size: 30px;
-text-align: center;
+  text-align: center;
   text-transform: uppercase;
   width: 25vw;
   height: 80px;
@@ -52,16 +52,4 @@ text-align: center;
 .task:hover {
   background-color: bisque;
   color: darkslategrey;
-}
-
-div.user-card:hover {
-  cursor: pointer;
-}
-
-div.user-card:nth-child(even) {
-  background-color: chartreuse;
-}
-
-input[type="submit"] {
-  disabled: true;
 }
